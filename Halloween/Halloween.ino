@@ -25,11 +25,9 @@ void setup() {
   pinMode(TRIGGER, OUTPUT);
   pinMode(PULSE, INPUT);
   digitalWrite(TRIGGER, LOW);
-  //mp3.begin(9600);
   Serial.begin(9600);
   delay(1000);
   mp3.begin();
-  //mp3.setVolume(20);
   delay(50);
 }
 
@@ -51,7 +49,6 @@ void loop() {
     Serial.print(distance, DEC);                    
     Serial.println("mm");             
     
-
     if (distance < 1000) {
       //TODO: play random sounds
       playSong(MANIACAL_LAUGH);
@@ -64,9 +61,7 @@ void loop() {
 }
 
 void playSong(byte song) {
-  //sendCommand(CMD_PLAY_WITH_VOLUME, 20, song);
-  //mp3.playWithFileName(0x01, song);
-  mp3.playWithVolume(1, 20);
+  mp3.playWithFileName(0x01, song);
   delay(50);
 
   //TODO: we could wait for a response from the MP3 player, for when the playback has finished?
